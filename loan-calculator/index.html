@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+        <title>Loan Calculator</title>
+    </head>
+    <body class="bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card mt-5" id="calculator">
+                        <div class="card-body text-center">
+                            <h1 class="card-title heading display-5 pb-3">Loan Calculator</h1>
+                            <form id="loanForm">
+                                <div class="mb-2">
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            $
+                                        </span>
+                                        <input type="number" placeholder="Loan Amount" class="form-control" id="amount">
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="input-group">
+                                        <span class="input-group-text">%</span>
+                                        <input type="number" placeholder="Interest Rate" class="form-control" id="rate">
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <input type="number" placeholder="Years to Pay" class="form-control" id="years">
+                                </div>
+                                <div class="mb3 d-grid">
+                                    <button type="submit" class="btn btn-dark">Calculate</button>
+                                </div>
+                            </form>
+
+                            <div class="pt-3 pb-2">
+                                <hr class="my-4 divider d-none">
+                                <div class="my-4 loader d-none">
+                                    <img src="img/loading.gif" alt="">
+                                </div>
+                            </div>
+
+                            <div id="results" class="d-none">
+                                <h2 class="h5 mb-3">Results</h2>
+                                <div class="mb-2">
+                                    <div class="input-group">
+                                        <span class="input-group-text">Monthly Payment</span>
+                                        <input type="number" class="form-control" id="monthlyPayment" disabled>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="input-group">
+                                        <span class="input-group-text">Total Payment</span>
+                                        <input type="number" class="form-control" id="totalPayment" disabled>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="input-group">
+                                        <span class="input-group-text">Total Interest</span>
+                                        <input type="number" class="form-control" id="totalInterest" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
