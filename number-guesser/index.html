@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>Number Guesser</title>
+</head>
+<body class="bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card mt-5" id="game">
+                    <div class="card-body text-center">
+                        <h1 class="card-title heading display-5 pb-3">Number Guesser</h1>
+                        <form id="guessForm">
+                            <p class="mb-2">Guess a number between <span class="min-num"></span> and <span class="max-num"></span></p>
+                            <p class="text-secondary"><b>Guesses left: <span class="num-guesses-left"></span></b></p>
+                            <div class="mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        Your Guess
+                                    </span>
+                                    <input type="text" placeholder="Enter a number" class="form-control" id="guess">
+                                </div>
+                            </div>
+                            <div class="mb-2 d-grid">
+                                <button type="submit" class="btn btn-dark" disabled>Check Guess</button>
+                            </div>
+                        </form>
+                        <p class="mb-0 mt-2"><b class="message"></b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <script src="app.js"></script>
+</body>
+</html>
