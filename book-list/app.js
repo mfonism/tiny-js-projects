@@ -21,11 +21,9 @@ class UI {
         this.authorInput = document.getElementById('author');
         this.isbnInput = document.getElementById('isbn');
         this.bookRows = document.getElementById('bookRows');
-
     }
 
     addBookToList(book) {
-
         const row = document.createElement('tr');
         book.getFieldNames().forEach((fieldName) => {
             const col = document.createElement('td');
@@ -86,7 +84,6 @@ function onBookFormSubmit(event) {
     ui.clearMessages();
 
     const book = new Book(title = ui.titleInput.value, author = ui.authorInput.value, isbn = ui.isbnInput.value);
-
     if (!book.isValid()) {
         ui.displayMessage('Please fill out all input fields!', isError = true);
         return
@@ -98,7 +95,6 @@ function onBookFormSubmit(event) {
 
 function onBookRowsClick(event) {
     event.preventDefault();
-
     if (event.target.classList.contains('delete')) {
         ui.removeBookFromList(event.target.parentElement.parentElement);
         return
