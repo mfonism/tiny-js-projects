@@ -67,6 +67,8 @@ class UI {
         this.bookForm.insertAdjacentElement('beforebegin', messageDisplay);
 
         messageDisplay.classList.add('alert');
+        messageDisplay.style.padding = '8px 12px';
+        messageDisplay.style.borderRadius = '4px';
         if (isError) {
             messageDisplay.classList.add('error');
         } else {
@@ -142,7 +144,7 @@ function onBookFormSubmit(event) {
     Storage.addBook(book);
     ui.clearInputFields();
     ui.refreshBookList();
-    ui.displayMessage('Book successfully added!')
+    ui.displayMessage('Book successfully added!');
 }
 
 function onBookRowsClick(event) {
