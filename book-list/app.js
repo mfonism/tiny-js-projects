@@ -118,10 +118,16 @@ class Storage {
     }
 }
 
-const ui = new UI();
-ui.bookForm.addEventListener('submit', onBookFormSubmit);
-ui.bookRows.addEventListener('click', onBookRowsClick);
-ui.refreshBookList();
+let ui;
+
+document.addEventListener('DOMContentLoaded', onDOMContentLoaded);
+
+function onDOMContentLoaded() {
+    ui = new UI();
+    ui.bookForm.addEventListener('submit', onBookFormSubmit);
+    ui.bookRows.addEventListener('click', onBookRowsClick);
+    ui.refreshBookList();
+}
 
 function onBookFormSubmit(event) {
     event.preventDefault();
