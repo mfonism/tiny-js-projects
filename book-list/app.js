@@ -5,12 +5,12 @@ class Book {
         this.isbn = isbn;
     }
 
-    getFieldNames() {
-        return ['title', 'author', 'isbn']
+    isValid() {
+        return !Book.getDisplayFieldNames().some((fieldName) => this[fieldName] == '')
     }
 
-    isValid() {
-        return !this.getFieldNames().some((fieldName) => this[fieldName] == '')
+    static getDisplayFieldNames() {
+        return ['title', 'author', 'isbn']
     }
 }
 
@@ -23,9 +23,20 @@ class UI {
         this.bookRows = document.getElementById('bookRows');
     }
 
-    addBookToList(book) {
+    refreshBookList() {
+        const books = Storage.getBooks();
+        console.log(books);
+
+        while (this.bookRows.firstChild) {
+            this.bookRows.firstChild.remove();
+        }
+        books.forEach((book) => { this.displayBookRow(book) });
+    }
+
+    displayBookRow(book) {
         const row = document.createElement('tr');
-        book.getFieldNames().forEach((fieldName) => {
+        row.id = book.index;
+        Book.getDisplayFieldNames().forEach((fieldName) => {
             const col = document.createElement('td');
             col.appendChild(document.createTextNode(book[fieldName]));
             row.appendChild(col);
@@ -42,11 +53,6 @@ class UI {
         deleteLink.style.cursor = 'pointer';
 
         this.bookRows.appendChild(row);
-        this.clearInputFields();
-    }
-
-    removeBookFromList(row) {
-        row.remove();
     }
 
     clearInputFields() {
@@ -75,9 +81,47 @@ class UI {
     }
 }
 
+class Storage {
+    static getBooks() {
+        let books;
+        if (localStorage.getItem('books') === null) {
+            books = [];
+        } else {
+            books = JSON.parse(localStorage.getItem('books'));
+        }
+
+        Storage.resetIndices(books);
+        return books
+    }
+
+    static setBooks(books) {
+        Storage.resetIndices(books);
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+
+    static resetIndices(books) {
+        books.forEach((book, index) => book.index = index);
+    }
+
+    static addBook(book) {
+        const books = Storage.getBooks();
+
+        books.push(book);
+        Storage.setBooks(books);
+    }
+
+    static removeBook(index) {
+        let books = Storage.getBooks();
+
+        books.splice(index, 1);
+        Storage.setBooks(books);
+    }
+}
+
 const ui = new UI();
 ui.bookForm.addEventListener('submit', onBookFormSubmit);
 ui.bookRows.addEventListener('click', onBookRowsClick);
+ui.refreshBookList();
 
 function onBookFormSubmit(event) {
     event.preventDefault();
@@ -89,14 +133,17 @@ function onBookFormSubmit(event) {
         return
     }
 
-    ui.addBookToList(book);
+    Storage.addBook(book);
+    ui.clearInputFields();
+    ui.refreshBookList();
     ui.displayMessage('Book successfully added!')
 }
 
 function onBookRowsClick(event) {
     event.preventDefault();
     if (event.target.classList.contains('delete')) {
-        ui.removeBookFromList(event.target.parentElement.parentElement);
+        Storage.removeBook(event.target.parentElement.parentElement.id);
+        ui.refreshBookList();
         return
     }
 }
