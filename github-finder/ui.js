@@ -90,7 +90,48 @@ class UI {
 
     displayRepos(reposData) {
         reposData.forEach((repo) => {
-            console.log(repo);
+            this.profileDisplay.appendChild(this.createSingleRepoCard(repo));
         })
+    }
+
+    createSingleRepoCard(repo) {
+        const card = document.createElement('div');
+        card.classList.add('card', 'card-body', 'mb-2');
+
+        const cardRow = document.createElement('div');
+        cardRow.classList.add('row');
+
+        const cardFirstCol = document.createElement('div');
+        cardFirstCol.classList.add('col-md-6');
+
+        const repoLink = document.createElement('a');
+        repoLink.setAttribute('href', repo.html_url);
+        repoLink.setAttribute('target', '_blank');
+        repoLink.appendChild(document.createTextNode(repo.name));
+
+        const cardSecondCol = document.createElement('div');
+        cardSecondCol.classList.add('col-md-6');
+
+        const starsDisplay = document.createElement('span');
+        starsDisplay.classList.add('badge', 'bg-primary');
+        starsDisplay.appendChild(document.createTextNode(`Stars: ${repo.stargazers_count}`));
+
+        const watchersDisplay = document.createElement('span');
+        watchersDisplay.classList.add('badge', 'bg-secondary');
+        watchersDisplay.appendChild(document.createTextNode(`Watchers: ${repo.watchers_count}`));
+
+        const forksDisplay = document.createElement('span');
+        forksDisplay.classList.add('badge', 'bg-success');
+        forksDisplay.appendChild(document.createTextNode(`Forks: ${repo.forks_count}`));
+
+        cardFirstCol.appendChild(repoLink);
+        cardSecondCol.appendChild(starsDisplay);
+        cardSecondCol.appendChild(watchersDisplay);
+        cardSecondCol.appendChild(forksDisplay);
+
+        card.appendChild(cardFirstCol);
+        card.appendChild(cardSecondCol);
+
+        return card
     }
 }
